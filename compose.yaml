@@ -8,6 +8,8 @@ services:
       - redis
     networks:
       - app-network
+    volumes:
+      - ./logs:/app/logs
 
   redis:
     image: redis:7.4-alpine
@@ -19,3 +21,7 @@ services:
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  logs:
+    external: true

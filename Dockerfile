@@ -23,13 +23,23 @@ RUN --mount=type=bind,source=package.json,target=package.json \
         yarn install --production=false --frozen-lockfile; \
     fi
 
+# Ensure the node user owns the node_modules directory.
 RUN chown -R node /usr/src/app/node_modules
+
+# Create the logs directory and make it writable by all users.
+RUN mkdir -p /app/logs
+RUN chown -R 1000:1000 /app/logs
+RUN chmod 777 /app/logs
+VOLUME /app/logs
 
 # Run the application as a non-root user.
 USER node
 
 # Copy the rest of the source files into the image.
 COPY . .
+
+# Ensure the correct ownership for the logs directory
+# RUN chown -R node /usr/src/app/logs
 
 # Expose the port that the application listens on.
 EXPOSE 3000
