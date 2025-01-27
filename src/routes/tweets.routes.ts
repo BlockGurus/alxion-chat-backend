@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import { getRetweeters, getLikingUsers } from "../services/tweets.services";
 import { getTweets, saveRetweeters } from "../controllers/tweets.controllers";
 import logger from "../config/logger";
-import { getRateLimitResetTime } from "../utils";
+import { extractMessageFrom429 } from "../utils";
 const tweetRoutes = express.Router();
 tweetRoutes.get("/", getTweets);
 
@@ -21,26 +21,6 @@ tweetRoutes.get("/:id/retweeters", async (req: Request, res: Response) => {
     res.status(500).json({ error: message });
   }
 });
-
-/**
- *
- * @param error
- * @param defaultMessage
- * @returns
- */
-const extractMessageFrom429 = (error: any, defaultMessage: string) => {
-  if (error.response && error.response.status === 429) {
-    // If the status is 429 (Rate Limit Exceeded)
-    const resetTimestamp = error.response.headers["x-rate-limit-reset"];
-
-    // Calculate remaining time to reset the rate limit
-    const remainingTime = getRateLimitResetTime(parseInt(resetTimestamp));
-    const message = `Rate limit exceeded. Try again in ${remainingTime} seconds.`;
-    logger.info(message);
-    return message;
-  }
-  return defaultMessage;
-};
 
 /**
  * Route to get users who liked a tweet.
