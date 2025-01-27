@@ -52,8 +52,6 @@ tweetRoutes.get("/:id/liking-users", async (req: Request, res: Response) => {
       data = await getLikingUsers(tweetId);
       await redis.set(cacheKey, JSON.stringify(data), "EX", 900);
     }
-
-    await redis.set(cacheKey, JSON.stringify(data), "EX", 900);
     res.status(200).json(data);
   } catch (error: any) {
     logger.error(error.message);
