@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import { getRetweeters, getLikingUsers } from "../services/tweets.services";
-import { getTweets, saveRetweeters } from "../controllers/tweets.controllers";
+import { getTweets } from "../controllers/tweets.controllers";
 import logger from "../config/logger";
 import { extractMessageFrom429 } from "../utils";
 import redis from "../services/redis.services"; // Adjust path as needed
