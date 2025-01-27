@@ -16,7 +16,9 @@ tweetRoutes.get("/:id/retweeters", async (req: Request, res: Response) => {
     res.status(200).json(data);
   } catch (error: any) {
     logger.error(error.message);
-    res.status(500).json({ error: "Failed to fetch retweeters." });
+    res
+      .status(500)
+      .json({ error: "Failed to fetch retweeters, try again in 15 minutes." });
   }
 });
 
@@ -30,7 +32,9 @@ tweetRoutes.get("/:id/liking-users", async (req: Request, res: Response) => {
     res.status(200).json(data);
   } catch (error: any) {
     logger.error(error.message);
-    res.status(500).json({ error: "Failed to fetch liking users." });
+    res.status(500).json({
+      error: "Failed to fetch liking users, try again in 15 minutes..",
+    });
   }
 });
 
