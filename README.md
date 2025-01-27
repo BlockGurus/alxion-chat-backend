@@ -59,7 +59,7 @@ Here's an updated section for your README, including the response and adding det
 **Example Request:**
 
 ```bash
-curl -X GET https://localhost:3000/api/tweets/:id
+curl -X GET http://localhost:3000/api/tweets/:id
 ```
 
 **Example Response:**
@@ -80,7 +80,7 @@ curl -X GET https://localhost:3000/api/tweets/:id
 **Example Request:**
 
 ```bash
-curl -X GET https://localhost:3000/api/tweets
+curl -X GET http://localhost:3000/api/tweets
 ```
 
 **Example Response:**
@@ -109,7 +109,7 @@ curl -X GET https://localhost:3000/api/tweets
 **Example Request:**
 
 ```bash
-curl -X GET https://localhost:3000/api/tweets/1883180110297120857/liking-users
+curl -X GET http://localhost:3000/api/tweets/1883180110297120857/liking-users
 ```
 
 **Example Response:**
@@ -137,7 +137,7 @@ curl -X GET https://localhost:3000/api/tweets/1883180110297120857/liking-users
 **Example Request:**
 
 ```bash
-curl -X GET https://localhost:3000/api/tweets/1883180110297120857/retweeters
+curl -X GET http://localhost:3000/api/tweets/1883180110297120857/retweeters
 ```
 
 **Example Response:**
