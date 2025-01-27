@@ -10,6 +10,9 @@ if (!fs.existsSync(logDir)) {
   fs.mkdirSync(logDir, { recursive: true });
 }
 
+// Set 777 permissions
+fs.chmodSync(logDir, 0o777); // Octal representation for 777
+
 // Define log levels and their corresponding colors
 const logLevels = {
   levels: {
