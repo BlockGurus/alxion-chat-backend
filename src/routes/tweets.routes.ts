@@ -7,7 +7,7 @@ router.get("/", getTweets);
 /**
  * Route to get retweeters of a tweet.
  */
-router.get("/tweets/:id/retweeters", async (req: Request, res: Response) => {
+router.get("/:id/retweeters", async (req: Request, res: Response) => {
   try {
     const tweetId = req.params.id;
     const data = await getRetweeters(tweetId);
@@ -21,7 +21,7 @@ router.get("/tweets/:id/retweeters", async (req: Request, res: Response) => {
 /**
  * Route to get users who liked a tweet.
  */
-router.get("/tweets/:id/liking-users", async (req: Request, res: Response) => {
+router.get("/:id/liking-users", async (req: Request, res: Response) => {
   try {
     const tweetId = req.params.id;
     const data = await getLikingUsers(tweetId);
