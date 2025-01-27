@@ -36,4 +36,8 @@ COPY . .
 EXPOSE 3000
 
 # Run the application.
-CMD yarn start --host
+CMD if [ "${NODE_ENV}" = "production" ]; then \
+        yarn start; \
+    else \
+        yarn dev; \
+    fi
