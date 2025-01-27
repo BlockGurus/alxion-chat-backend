@@ -55,7 +55,7 @@ The Alxion Bot Backend is a powerful tool that interacts with Twitter data to re
 **Example Request:**
 
 ```bash
-curl -X GET http://localhost:3000/api/tweets/:id
+curl -X GET http://localhost:3000/api/tweets/1883180110297120857
 ```
 
 **Example Response:**
