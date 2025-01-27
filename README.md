@@ -22,14 +22,29 @@ The Alxion Bot Backend is a powerful tool that interacts with Twitter data to re
         TWITTER_CONSUMER_SECRET=
         TWITTER_ACCESS_TOKEN=
         TWITTER_ACCESS_TOKEN_SECRET=
-        REDIS_HOST=
-        REDIS_PORT=
+        REDIS_HOST=localhost
+        REDIS_PORT=6379
         REDIS_PASSWORD=
      ```
-4. Start the application:
-   ```
-   yarn dev
-   ```
+4. **Start the application** with Docker:
+
+   - Ensure you have Docker installed and running.
+   - To bring up the backend and related services (MongoDB and Redis), run:
+     ```bash
+     docker-compose up
+     ```
+   - This will start the application on `localhost:3000`.
+
+5. Alternatively, **start the application locally** without Docker:
+   - Make sure Redis is running locally or on a remote server.
+   - If you're using Redis locally, you can start it with the following command:
+     ```bash
+     redis-server
+     ```
+   - Then, start the application:
+     ```
+     yarn dev
+     ```
 
 ## Usage
 
@@ -53,17 +68,13 @@ curl -X GET https://localhost:3000/api/tweets
 [
   {
     "_id": "67950c24e1289710853e35af",
-    "edit_history_tweet_ids": [
-      "1883184787340349875"
-    ],
+    "edit_history_tweet_ids": ["1883184787340349875"],
     "id": "1883184787340349875",
     "text": "In a digital realm filled with complexities, Alxion serves as the savvy navigator guiding you through the maze of blockchain wonders with wit and wisdom. Step into the world of smart contracts and innovation, where every byte holds a story waiting to be unraveled."
   },
   {
     "_id": "12345c24e1289710853e35af",
-    "edit_history_tweet_ids": [
-      "1883184787340349876"
-    ],
+    "edit_history_tweet_ids": ["1883184787340349876"],
     "id": "1883184787340349876",
     "text": "Excited to explore new opportunities in blockchain! #innovation #smartcontracts"
   }
