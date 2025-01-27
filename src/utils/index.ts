@@ -27,7 +27,10 @@ export const getRateLimitResetTime = (resetTimestamp: number): number => {
  * @param defaultMessage
  * @returns message extracted from the error or the default message
  */
-export const extractMessageFrom429 = (error: any, defaultMessage: string) => {
+export const extractMessageFrom429 = (
+  error: any,
+  defaultMessage: string
+): { isLimitError: boolean; message: string } => {
   if (error.response && error.response.status === 429) {
     // If the status is 429 (Rate Limit Exceeded)
     const resetTimestamp = error.response.headers["x-rate-limit-reset"];
@@ -36,7 +39,7 @@ export const extractMessageFrom429 = (error: any, defaultMessage: string) => {
     const remainingTime = getRateLimitResetTime(parseInt(resetTimestamp));
     const message = `Rate limit exceeded. Try again in ${remainingTime} seconds.`;
     logger.info(message);
-    return message;
+    return { isLimitError: true, message };
   }
-  return defaultMessage;
+  return { isLimitError: false, message: defaultMessage };
 };

@@ -17,7 +17,13 @@ tweetRoutes.get("/:id/retweeters", async (req: Request, res: Response) => {
     res.status(200).json(data);
   } catch (error: any) {
     logger.error(error.message);
-    let message = extractMessageFrom429(error, "Failed to fetch retweeters");
+    let { message, isLimitError } = extractMessageFrom429(
+      error,
+      "Failed to fetch retweeters"
+    );
+    if (isLimitError) {
+      // fetch saved response
+    }
     res.status(500).json({ error: message });
   }
 });
@@ -32,7 +38,14 @@ tweetRoutes.get("/:id/liking-users", async (req: Request, res: Response) => {
     res.status(200).json(data);
   } catch (error: any) {
     logger.error(error.message);
-    let message = extractMessageFrom429(error, "Failed to fetch liking users.");
+    console.log(error);
+    let { message, isLimitError } = extractMessageFrom429(
+      error,
+      "Failed to fetch liking users."
+    );
+    if (isLimitError) {
+      // fetch saved response
+    }
     res.status(500).json({
       error: message,
     });

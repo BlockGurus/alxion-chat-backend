@@ -29,7 +29,7 @@ export const getLikingUsers = async (tweetId: string) => {
   const url = `${BASE_URL}/${tweetId}/liking_users`;
   const response = await axios.get(url, {
     headers: {
-      Authorization: `Bearer ${process.env.TWITTER_BEARER_TOKEN}`,
+      Authorization: `Bearer ${process.env.TWITTER_ACCESS_TOKEN}`,
     },
   });
   return response.data;
