@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import { getRetweeters, getLikingUsers } from "../services/tweets.services";
-import { getTweets } from "../controllers/tweets.controllers";
+import { getTweets, saveRetweeters } from "../controllers/tweets.controllers";
 import logger from "../config/logger";
 const tweetRoutes = express.Router();
 tweetRoutes.get("/", getTweets);
@@ -12,6 +12,7 @@ tweetRoutes.get("/:id/retweeters", async (req: Request, res: Response) => {
   try {
     const tweetId = req.params.id;
     const data = await getRetweeters(tweetId);
+    await saveRetweeters(req, res, data);
     res.status(200).json(data);
   } catch (error: any) {
     logger.error(error.message);
