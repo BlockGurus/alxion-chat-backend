@@ -18,7 +18,7 @@ app.use("/api/tweets", tweetRoutes);
 
 // Error handling middleware
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  console.error(err.stack);
+  logger.error(err.stack);
   res.status(500).send("Something went wrong!");
 });
 
