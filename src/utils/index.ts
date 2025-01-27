@@ -1,4 +1,5 @@
 import logger from "../config/logger";
+import { oauth } from "../services/oauth.services";
 export function setup_HandleError(error: unknown, context: string): void {
   if (error instanceof Error) {
     if (error.message.includes("net::ERR_ABORTED")) {
@@ -42,4 +43,26 @@ export const extractMessageFrom429 = (
     return { isLimitError: true, message };
   }
   return { isLimitError: false, message: defaultMessage };
+};
+
+/**
+ * Process OAuth headers.
+ * @param url
+ * @returns
+ */
+export const processOauth = (url: string) => {
+  // Prepare the request with OAuth headers
+  const request_data = {
+    url,
+    method: "GET",
+    data: {},
+  };
+
+  const headers = oauth.toHeader(
+    oauth.authorize(request_data, {
+      key: process.env.TWITTER_ACCESS_TOKEN!,
+      secret: process.env.TWITTER_ACCESS_TOKEN_SECRET!,
+    })
+  );
+  return headers;
 };
