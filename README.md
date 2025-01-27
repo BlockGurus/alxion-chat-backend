@@ -48,10 +48,6 @@ The Alxion Bot Backend is a powerful tool that interacts with Twitter data to re
 
 ## Usage
 
-Here's an updated section for your README, including the response and adding details for both liking users and retweeters:
-
----
-
 ### Get single tweets
 
 **Endpoint:** `GET /api/tweets/:id`
