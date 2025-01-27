@@ -13,8 +13,8 @@ The Alxion Bot Backend is a powerful tool that interacts with Twitter data to re
    cd alxion-chat-backend
    yarn
    ```
-3. Configure Gnosis Request API credentials:
-   - Obtain your Gnosis Request API credentials from the Gnosis Developer Portal.
+3. Configure X Request API credentials:
+   - Obtain your X Request API credentials from the X Developer Portal.
    - Open the `.env` file and update the following values with your credentials:
      ```
         MONGO_URI="mongodb://localhost:27017"
