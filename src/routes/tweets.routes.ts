@@ -19,8 +19,10 @@ tweetRoutes.get("/:id/retweeters", async (req: Request, res: Response) => {
     let data: any = {};
 
     if (cachedData) {
+      logger.info("Tweeter retweet data fetched from cache");
       data = JSON.parse(cachedData);
     } else {
+      logger.info("Tweeter retweet data fetched from API");
       data = await getRetweeters(tweetId);
       await redis.set(cacheKey, JSON.stringify(data), "EX", REDIS_CACHE_TIME);
     }
@@ -49,9 +51,11 @@ tweetRoutes.get("/:id/liking-users", async (req: Request, res: Response) => {
 
     if (cachedData) {
       data = JSON.parse(cachedData);
+      logger.info("Tweeter liking-users data fetched from cache");
     } else {
       data = await getLikingUsers(tweetId);
       await redis.set(cacheKey, JSON.stringify(data), "EX", REDIS_CACHE_TIME);
+      logger.info("Tweeter liking-users data fetched from API");
     }
     res.status(200).json(data);
   } catch (error: any) {
