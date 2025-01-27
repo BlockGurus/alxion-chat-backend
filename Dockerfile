@@ -27,10 +27,7 @@ RUN --mount=type=bind,source=package.json,target=package.json \
 RUN chown -R node /usr/src/app/node_modules
 
 # Create the logs directory and make it writable by all users.
-RUN mkdir -p /app/logs
-RUN chown -R 1000:1000 /app/logs
-RUN chmod 777 /app/logs
-VOLUME /app/logs
+RUN mkdir -p /app/logs && chmod 755 /app/logs
 
 # Run the application as a non-root user.
 USER node
