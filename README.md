@@ -17,7 +17,7 @@ The Alxion Bot Backend is a powerful tool that interacts with Twitter data to re
    - Obtain your X Request API credentials from the X Developer Portal.
    - Open the `.env` file and update the following values with your credentials:
      ```
-        MONGO_URI="mongodb://localhost:27017"
+        MONGO_URI=
         TWITTER_BEARER_TOKEN=
         TWITTER_CONSUMER_SECRET=
         TWITTER_ACCESS_TOKEN=
