@@ -10,3 +10,8 @@ export function setup_HandleError(error: unknown, context: string): void {
     logger.error(`An unknown error occurred in ${context}: ${error}`);
   }
 }
+
+export const getRateLimitResetTime = (resetTimestamp: number): number => {
+  const currentTimestamp = Math.floor(Date.now() / 1000); // Current Unix timestamp in seconds
+  return resetTimestamp - currentTimestamp; // Time remaining in seconds
+};
