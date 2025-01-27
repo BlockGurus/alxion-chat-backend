@@ -13,9 +13,9 @@ export const saveRetweeters = async (
   data: IRetweetersResponse
 ) => {
   const tweetId = req.params.id;
-  new RetweetersResponse({
+  await new RetweetersResponse({
     tweetId,
     users: data.users,
     meta: data.meta,
-  });
+  }).save();
 };
