@@ -1,7 +1,7 @@
 {
   "name": "alxion-chat-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/app.js",
   "scripts": {
     "start": "yarn tsc && node dist/app.js",
     "dev": "ts-node-dev src/app.ts",
