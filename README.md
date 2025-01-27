@@ -52,6 +52,27 @@ Here's an updated section for your README, including the response and adding det
 
 ---
 
+### Get single tweets
+
+**Endpoint:** `GET /api/tweets/:id`
+
+**Example Request:**
+
+```bash
+curl -X GET https://localhost:3000/api/tweets/:id
+```
+
+**Example Response:**
+
+```json
+{
+  "_id": "67950c24e1289710853e35af",
+  "edit_history_tweet_ids": ["1883184787340349875"],
+  "id": "1883184787340349875",
+  "text": "In a digital realm filled with complexities, Alxion serves as the savvy navigator guiding you through the maze of blockchain wonders with wit and wisdom. Step into the world of smart contracts and innovation, where every byte holds a story waiting to be unraveled."
+}
+```
+
 ### Get all tweets
 
 **Endpoint:** `GET /api/tweets`

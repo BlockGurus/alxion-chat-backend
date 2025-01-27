@@ -6,6 +6,8 @@ import { processOauth } from "../utils";
 dotenv.config();
 
 export const getAllTweets = async () => await TweetSchemaModel.find();
+export const getTweetByTweetId = async (id: string) =>
+  await TweetSchemaModel.findOne({ id });
 
 const BASE_URL = "https://api.twitter.com/2/tweets";
 
