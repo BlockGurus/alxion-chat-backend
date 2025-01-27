@@ -22,6 +22,12 @@ tweetRoutes.get("/:id/retweeters", async (req: Request, res: Response) => {
   }
 });
 
+/**
+ *
+ * @param error
+ * @param defaultMessage
+ * @returns
+ */
 const extractMessageFrom429 = (error: any, defaultMessage: string) => {
   if (error.response && error.response.status === 429) {
     // If the status is 429 (Rate Limit Exceeded)
@@ -33,6 +39,7 @@ const extractMessageFrom429 = (error: any, defaultMessage: string) => {
     logger.info(message);
     return message;
   }
+  return defaultMessage;
 };
 
 /**
