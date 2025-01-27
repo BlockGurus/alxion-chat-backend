@@ -4,3 +4,18 @@ services:
       context: .
     ports:
       - 3000:3000
+    depends_on:
+      - redis
+    networks:
+      - app-network
+
+  redis:
+    image: redis:alpine
+    ports:
+      - 6379:6379
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
