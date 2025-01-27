@@ -1,5 +1,5 @@
 import logger from "../config/logger";
-import { oauth } from "../services/oauth.services";
+import { oauth } from "../services/oauth.twitter.services";
 export function setup_HandleError(error: unknown, context: string): void {
   if (error instanceof Error) {
     if (error.message.includes("net::ERR_ABORTED")) {
