@@ -5,7 +5,6 @@ ARG NODE_ENV=development
 
 FROM node:${NODE_VERSION}-alpine
 
-# Use production node environment by default.
 ENV NODE_ENV=${NODE_ENV}
 
 
@@ -36,8 +35,7 @@ COPY . .
 EXPOSE 3000
 
 # Run the application.
-CMD if [ "${NODE_ENV}" = "production" ]; then \
-        yarn start; \
-    else \
-        yarn dev; \
-    fi
+CMD yarn dev
+
+
+
