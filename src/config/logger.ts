@@ -10,13 +10,6 @@ if (!fs.existsSync(logDir)) {
   fs.mkdirSync(logDir, { recursive: true });
 }
 
-// Set 777 permissions
-try {
-  fs.chmodSync(logDir, 0o777);
-} catch (error: any) {
-  console.warn(`Could not set permissions for ${logDir}:`, error.message);
-}
-
 // Define log levels and their corresponding colors
 const logLevels = {
   levels: {
@@ -106,6 +99,13 @@ const logger = createLogger({
     }), // Daily rotating debug log
   ],
 });
+
+// Set 777 permissions
+try {
+  fs.chmodSync(logDir, 0o777);
+} catch (error: any) {
+  logger.error(`Could not set permissions for ${logDir}:`, error.message);
+}
 
 // Catch unhandled promise rejections
 
