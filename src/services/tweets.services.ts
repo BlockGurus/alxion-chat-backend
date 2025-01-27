@@ -17,10 +17,10 @@ const oauth = new OAuth({
   },
 });
 
-const processOauth = (url: string) => {
+const processOauth = (tweet_id: number | string) => {
   // Prepare the request with OAuth headers
   const request_data = {
-    url,
+    url: `https://api.twitter.com/2/tweets/${tweet_id}`,
     method: "GET",
     data: {},
   };
@@ -57,7 +57,7 @@ export const getRetweeters = async (tweetId: string) => {
  */
 export const getLikingUsers = async (tweetId: string) => {
   const url = `${BASE_URL}/${tweetId}/liking_users`;
-  const headers = processOauth(url) as any;
+  const headers = processOauth(tweetId) as any;
   const response = await axios.get(url, {
     headers,
   });
