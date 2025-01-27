@@ -1,13 +1,13 @@
 import express, { Request, Response } from "express";
 import { getRetweeters, getLikingUsers } from "../services/tweets.services";
 import { getTweets } from "../controllers/tweets.controllers";
-const router = express.Router();
-router.get("/", getTweets);
+const tweetRoutes = express.Router();
+tweetRoutes.get("/", getTweets);
 
 /**
  * Route to get retweeters of a tweet.
  */
-router.get("/:id/retweeters", async (req: Request, res: Response) => {
+tweetRoutes.get("/:id/retweeters", async (req: Request, res: Response) => {
   try {
     const tweetId = req.params.id;
     const data = await getRetweeters(tweetId);
@@ -21,7 +21,7 @@ router.get("/:id/retweeters", async (req: Request, res: Response) => {
 /**
  * Route to get users who liked a tweet.
  */
-router.get("/:id/liking-users", async (req: Request, res: Response) => {
+tweetRoutes.get("/:id/liking-users", async (req: Request, res: Response) => {
   try {
     const tweetId = req.params.id;
     const data = await getLikingUsers(tweetId);
@@ -32,6 +32,4 @@ router.get("/:id/liking-users", async (req: Request, res: Response) => {
   }
 });
 
-export default router;
-
-export const tweetRoutes = router;
+export default tweetRoutes;

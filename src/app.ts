@@ -1,7 +1,7 @@
 import express, { Application, Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./database/connection";
-import { tweetRoutes } from "./routes/tweets.routes";
+import tweetRoutes from "./routes/tweets.routes";
 import logger from "./config/logger";
 
 dotenv.config();
