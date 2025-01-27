@@ -9,7 +9,7 @@ export const getTweets = async (_: Request, res: Response) => {
 
 export const saveRetweeters = async (
   req: Request,
-  res: Response,
+  _: Response,
   data: IRetweetersResponse
 ) => {
   const tweetId = req.params.id;
