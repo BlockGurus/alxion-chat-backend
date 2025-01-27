@@ -16,7 +16,7 @@ export function setup_HandleError(error: unknown, context: string): void {
  * @param resetTimestamp
  * @returns Time remaining in seconds until the rate limit resets
  */
-export const getRateLimitResetTime = (resetTimestamp: number): number => {
+const getRateLimitResetTime = (resetTimestamp: number): number => {
   const currentTimestamp = Math.floor(Date.now() / 1000); // Current Unix timestamp in seconds
   return resetTimestamp - currentTimestamp; // Time remaining in seconds
 };
