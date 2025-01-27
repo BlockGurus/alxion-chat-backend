@@ -15,23 +15,22 @@ tweetRoutes.get("/:id/retweeters", async (req: Request, res: Response) => {
     const tweetId = req.params.id;
     const cacheKey = `retweeters-${tweetId}`;
     const cachedData = await redis.get(cacheKey);
+    let data: any = {};
 
     if (cachedData) {
-      return res.status(200).json(JSON.parse(cachedData)); // Return cached data
+      data = JSON.parse(cachedData);
+    } else {
+      data = await getRetweeters(tweetId);
+      await redis.set(cacheKey, JSON.stringify(data), "EX", 900);
     }
 
-    const data = await getRetweeters(tweetId);
-    await redis.set(cacheKey, JSON.stringify(data), "EX", 900);
     res.status(200).json(data);
   } catch (error: any) {
     logger.error(error.message);
-    let { message, isLimitError } = extractMessageFrom429(
+    let { message } = extractMessageFrom429(
       error,
       "Failed to fetch retweeters"
     );
-    if (isLimitError) {
-      // fetch saved response
-    }
     res.status(500).json({ error: message });
   }
 });
@@ -45,23 +44,24 @@ tweetRoutes.get("/:id/liking-users", async (req: Request, res: Response) => {
     const cacheKey = `liking-users-${tweetId}`;
     const cachedData = await redis.get(cacheKey);
 
+    let data: any = {};
+
     if (cachedData) {
-      return res.status(200).json(JSON.parse(cachedData)); // Return cached data
+      data = JSON.parse(cachedData);
+    } else {
+      data = await getLikingUsers(tweetId);
+      await redis.set(cacheKey, JSON.stringify(data), "EX", 900);
     }
 
-    const data = await getLikingUsers(tweetId);
     await redis.set(cacheKey, JSON.stringify(data), "EX", 900);
     res.status(200).json(data);
   } catch (error: any) {
     logger.error(error.message);
     console.log(error);
-    let { message, isLimitError } = extractMessageFrom429(
+    let { message } = extractMessageFrom429(
       error,
       "Failed to fetch liking users."
     );
-    if (isLimitError) {
-      // fetch saved response
-    }
     res.status(500).json({
       error: message,
     });
