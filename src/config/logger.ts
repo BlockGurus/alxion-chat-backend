@@ -11,7 +11,11 @@ if (!fs.existsSync(logDir)) {
 }
 
 // Set 777 permissions
-fs.chmodSync(logDir, 0o777); // Octal representation for 777
+try {
+  fs.chmodSync(logDir, 0o777);
+} catch (error: any) {
+  console.warn(`Could not set permissions for ${logDir}:`, error.message);
+}
 
 // Define log levels and their corresponding colors
 const logLevels = {
