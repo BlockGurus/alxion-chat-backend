@@ -4,7 +4,7 @@ import logger from "../config/logger";
 const redis = new Redis({
   host: process.env.REDIS_HOST! || "localhost",
   port: +process.env.REDIS_PORT! || 6379,
-  password: "your_redis_password",
+  password: process.env.REDIS_PASSWORD,
   db: 0,
 });
 
