@@ -4,6 +4,7 @@ import { getTweets, saveRetweeters } from "../controllers/tweets.controllers";
 import logger from "../config/logger";
 import { extractMessageFrom429 } from "../utils";
 import redis from "../services/redis.services"; // Adjust path as needed
+import { REDIS_CACHE_TIME } from "../config/database";
 const tweetRoutes = express.Router();
 tweetRoutes.get("/", getTweets);
 
@@ -21,7 +22,7 @@ tweetRoutes.get("/:id/retweeters", async (req: Request, res: Response) => {
       data = JSON.parse(cachedData);
     } else {
       data = await getRetweeters(tweetId);
-      await redis.set(cacheKey, JSON.stringify(data), "EX", 900);
+      await redis.set(cacheKey, JSON.stringify(data), "EX", REDIS_CACHE_TIME);
     }
 
     res.status(200).json(data);
@@ -50,7 +51,7 @@ tweetRoutes.get("/:id/liking-users", async (req: Request, res: Response) => {
       data = JSON.parse(cachedData);
     } else {
       data = await getLikingUsers(tweetId);
-      await redis.set(cacheKey, JSON.stringify(data), "EX", 900);
+      await redis.set(cacheKey, JSON.stringify(data), "EX", REDIS_CACHE_TIME);
     }
     res.status(200).json(data);
   } catch (error: any) {
