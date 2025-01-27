@@ -13,7 +13,7 @@ export const saveRetweeters = async (
   data: IRetweetersResponse
 ) => {
   const tweetId = req.params.id;
- 
+
   await RetweetersResponse.updateOne(
     { tweetId },
     {
