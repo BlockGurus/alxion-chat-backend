@@ -13,11 +13,12 @@ export const saveRetweeters = async (
   data: IRetweetersResponse
 ) => {
   const tweetId = req.params.id;
+ 
   await RetweetersResponse.updateOne(
     { tweetId },
     {
       tweetId,
-      users: data.users,
+      users: data.data,
       meta: data.meta,
     },
     { upsert: true }

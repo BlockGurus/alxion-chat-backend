@@ -6,7 +6,7 @@ interface IRetweetResponse extends Document, IRetweetersResponse {}
 const RetweetersResponseSchema: Schema = new Schema(
   {
     tweetId: { type: String, required: true },
-    users: [
+    data: [
       {
         id: { type: String, required: true },
         name: { type: String, required: true },

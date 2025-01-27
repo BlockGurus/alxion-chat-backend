@@ -1,6 +1,6 @@
 export interface IRetweetersResponse {
   tweetId: string; // The ID of the tweet
-  users: Array<{
+  data: Array<{
     id: string;
     name: string;
     username: string;
