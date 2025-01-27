@@ -11,13 +11,18 @@ export function setup_HandleError(error: unknown, context: string): void {
   }
 }
 
+/**
+ * Calculate the time remaining until the rate limit resets
+ * @param resetTimestamp
+ * @returns Time remaining in seconds until the rate limit resets
+ */
 export const getRateLimitResetTime = (resetTimestamp: number): number => {
   const currentTimestamp = Math.floor(Date.now() / 1000); // Current Unix timestamp in seconds
   return resetTimestamp - currentTimestamp; // Time remaining in seconds
 };
 
 /**
- *
+ * Extract the message from the error if the status is 429 (Rate Limit Exceeded)
  * @param error
  * @param defaultMessage
  * @returns message extracted from the error or the default message
