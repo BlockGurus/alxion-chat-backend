@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Application, Request, Response, NextFunction } from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./database/connection";
 import { tweetRoutes } from "./routes/tweets.routes";
@@ -17,7 +17,7 @@ connectDB();
 app.use("/api/tweets", tweetRoutes);
 
 // Error handling middleware
-app.use((err, req, res, next) => {
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   console.error(err.stack);
   res.status(500).send("Something went wrong!");
 });

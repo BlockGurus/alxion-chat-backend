@@ -1,5 +1,6 @@
-import { getAllTweets } from "../services/tweets.services.ts";
-export const getTweets = async (req, res) => {
+import { getAllTweets } from "../services/tweets.services";
+import { Request, Response } from "express";
+export const getTweets = async (_: Request, res: Response) => {
   const tweets = await getAllTweets();
   res.json(tweets);
 };
